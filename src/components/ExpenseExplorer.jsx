@@ -284,7 +284,7 @@ const ExpenseExplorer = () => {
 
         </div>
         {/* Display Data */}
-        <div className='DataDisplayContainer flex flex-col rounded-2xl border-2 border-[#A72703] p-3 h-[400px] overflow-y-scroll mb-4 overflow-x-auto scrollbar-[1px] scrollbar-thumb-[#A72703] scrollbar-track-[#A72703]'>
+        <div className='DataDisplayContainer flex flex-col rounded-2xl border-2 border-[#A72703] p-3 h-[400px] overflow-y-scroll mb-4 mx-4 overflow-x-auto scrollbar-[1px] scrollbar-thumb-[#A72703] scrollbar-track-[#A72703]'>
           <div className='filter flex gap-6 flex-wrap'>
 
             <select name='Month' value={FilterMonth} className='border-[#A72703] border-2 px-1 text-black font-semibold ' onChange={(e) => { setFilterMonth(e.target.value); }}>
