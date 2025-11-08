@@ -338,8 +338,8 @@ const ExpenseExplorer = () => {
               Expense.map((item) => (
                 <div key={item.food_id} className='grid grid-cols-4 gap-4 text-center border-b py-2'>
 
-                  <div >{item.food_id}₹</div>
-                  <div >{item.itemName}₹</div>
+                  <div >{item.food_id}</div>
+                  <div >{item.itemName}</div>
                   <div >{item.itemCost}₹</div>
                   <div className='flex gap-4'>
                     <button className='cursor-pointer w-fit' onClick={() => handleDelete("food", item.food_id)}><img src="/delete.png" alt="" width={20} /></button>
@@ -369,8 +369,8 @@ const ExpenseExplorer = () => {
               Stuff.map((item) => (
                 <div key={item.stuff_id} className='grid grid-cols-4 gap-4 text-center border-b py-2'>
 
-                  <div >{item.stuff_id}₹</div>
-                  <div >{item.itemName}₹</div>
+                  <div >{item.stuff_id}</div>
+                  <div >{item.itemName}</div>
                   <div >{item.itemCost}₹</div>
                   <div className='flex gap-4'>
                     <button className='cursor-pointer w-fit' onClick={() => handleDelete("stuff", item.stuff_id)}><img src="/delete.png" alt="" width={20} /></button>
@@ -400,8 +400,8 @@ const ExpenseExplorer = () => {
               Mesc.map((item) => (
                 <div key={item.mesc_id} className='grid grid-cols-4 gap-4 text-center border-b py-2'>
 
-                  <div >{item.mesc_id}₹</div>
-                  <div >{item.itemName}₹</div>
+                  <div >{item.mesc_id}</div>
+                  <div >{item.itemName}</div>
                   <div >{item.itemCost}₹</div>
                   <div className='flex gap-4'>
                     <button className='cursor-pointer w-fit' onClick={() => handleDelete("mesc", item.mesc_id)}><img src="/delete.png" alt="" width={20} /></button>
@@ -431,8 +431,8 @@ const ExpenseExplorer = () => {
               Travel.map((item) => (
                 <div key={item.travel_id} className='grid grid-cols-4 gap-4 text-center border-b py-2'>
 
-                  <div >{item.travel_id}₹</div>
-                  <div >{item.itemName}₹</div>
+                  <div >{item.travel_id}</div>
+                  <div >{item.itemName}</div>
                   <div >{item.itemCost}₹</div>
                   <div className='flex gap-4'>
                     <button className='cursor-pointer w-fit' onClick={() => handleDelete("travel", item.travel_id)}><img src="/delete.png" alt="" width={20} /></button>
