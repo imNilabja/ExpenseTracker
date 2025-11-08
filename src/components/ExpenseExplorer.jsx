@@ -24,7 +24,7 @@ const ExpenseExplorer = () => {
   const handleSubmit = async () => {
     if (ItemCategory.toLowerCase() === 'food') {
       const response = await fetch(
-        `https://${IP}/addFood/${ItemMonth}/${ItemYear}`,
+        `http://${IP}/addFood/${ItemMonth}/${ItemYear}`,
         {
           method: 'POST',
           headers: {
@@ -44,7 +44,7 @@ const ExpenseExplorer = () => {
       }
     } else if (ItemCategory.toLowerCase() === 'mesc') {
       const response = await fetch(
-        `https://${IP}/addMesc/${ItemMonth}/${ItemYear}`,
+        `http://${IP}/addMesc/${ItemMonth}/${ItemYear}`,
         {
           method: 'POST',
           headers: {
@@ -64,7 +64,7 @@ const ExpenseExplorer = () => {
       }
     } else if (ItemCategory.toLowerCase() === 'stuff') {
       const response = await fetch(
-        `https://${IP}/addStuff/${ItemMonth}/${ItemYear}`,
+        `http://${IP}/addStuff/${ItemMonth}/${ItemYear}`,
         {
           method: 'POST',
           headers: {
@@ -84,7 +84,7 @@ const ExpenseExplorer = () => {
       }
     } else if (ItemCategory.toLowerCase() === 'travel') {
       const response = await fetch(
-        `https://${IP}/addTravel/${ItemMonth}/${ItemYear}`,
+        `http://${IP}/addTravel/${ItemMonth}/${ItemYear}`,
         {
           method: 'POST',
           headers: {
@@ -112,7 +112,7 @@ const ExpenseExplorer = () => {
   };
 
   const handleFetchFood = async () => {
-    const response = await fetch(`https://${IP}/getFoodByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getFoodByYear/${FilterMonth}/${FilterYear}`);
     // const response = await fetch(`http://localhost:8080/getFoodByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     console.log(data)
@@ -120,21 +120,21 @@ const ExpenseExplorer = () => {
   };
 
   const handleFetchStuff = async () => {
-    const response = await fetch(`https://${IP}/getStuffByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getStuffByYear/${FilterMonth}/${FilterYear}`);
     // const response = await fetch(`http://localhost:8080/getStuffByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setStuff(data);
   };
 
   const handleFetchMesc = async () => {
-    const response = await fetch(`https://${IP}/getMescByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getMescByYear/${FilterMonth}/${FilterYear}`);
     // const response = await fetch(`http://localhost:8080/getMescByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setMesc(data);
   };
 
   const handleFetchTravel = async () => {
-    const response = await fetch(`https://${IP}/getTravelByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getTravelByYear/${FilterMonth}/${FilterYear}`);
     // const response = await fetch(`http://localhost:8080/getTravelByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setTravel(data);
@@ -142,7 +142,7 @@ const ExpenseExplorer = () => {
 
 
   const handleDelete = async (item, id) => {
-    const response = await fetch(`https://${IP}/deleteItem/${item}/${id}`, {
+    const response = await fetch(`http://${IP}/deleteItem/${item}/${id}`, {
     // const response = await fetch(`http://localhost:8080/deleteItem/${item}/${id}`, {
       method: 'DELETE',
     });
