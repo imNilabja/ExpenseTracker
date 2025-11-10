@@ -181,6 +181,7 @@ const ExpenseExplorer = () => {
       handleFetchStuff();
       handleFetchMesc();
       handleFetchTravel();
+      handleFoodSum();
     }
   }, [FilterMonth, FilterYear]);
 
