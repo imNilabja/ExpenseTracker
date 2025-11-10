@@ -17,6 +17,7 @@ const ExpenseExplorer = () => {
   const [Travel, setTravel] = useState([]);
   const [FilterMonth, setFilterMonth] = useState("");
   const [FilterYear, setFilterYear] = useState("");
+  const [FoodSum, setFoodSum] = useState("");
   const IP="13.204.17.177:8080";
 
 
@@ -140,6 +141,11 @@ const ExpenseExplorer = () => {
     setTravel(data);
   };
 
+  const handleFoodSum = async () => {
+    const response = await fetch(`http://${IP}/ItemSum/food/${FilterMonth}/${FilterYear}`);
+    const data = await response.json();
+    setFoodSum(data);
+  };
 
   const handleDelete = async (item, id) => {
     const response = await fetch(`http://${IP}/deleteItem/${item}/${id}`, {
@@ -263,26 +269,15 @@ const ExpenseExplorer = () => {
             <option value="2029">2029</option>
             <option value="2030">2030</option>
           </select>
+          
 
 
           <button onClick={handleSubmit} className='border-1 border-[#A72703] px-4 rounded-xl text-red-700 font-bold cursor-pointer'>Add</button>
 
 
-
-
-          {/* Data Rows
-      {data.map((food) => (
-        <div key={food.id} className="flex gap-10 py-1 border-b border-gray-300">
-        <div>{food.id}</div>
-        <div>{food.itemName}</div>
-        <div>₹{food.itemCost}</div>
-        <div>{food.month?.month}</div>
-        <div>{food.month?.yearId}</div>
         </div>
-        ))} */}
 
-
-        </div>
+        
         {/* Display Data */}
         <div className='DataDisplayContainer flex flex-col rounded-2xl border-2 border-[#A72703] p-3 h-[400px] overflow-y-scroll mb-4 mx-4 overflow-x-auto scrollbar-[1px] scrollbar-thumb-[#A72703] scrollbar-track-[#A72703]'>
           <div className='filter flex gap-6 flex-wrap'>
@@ -350,6 +345,7 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
+            <div className='flex items-center justify-center'>Sum: {FoodSum}</div>
 
 
           </div>
