@@ -346,7 +346,7 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
-            <div className='flex items-center justify-center'>Sum: {FoodSum}</div>
+            <div className='flex items-center justify-center'>Sum: ₹{FoodSum}</div>
 
 
           </div>
