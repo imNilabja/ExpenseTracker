@@ -18,7 +18,15 @@ const ExpenseExplorer = () => {
   const [FilterMonth, setFilterMonth] = useState("");
   const [FilterYear, setFilterYear] = useState("");
   const [FoodSum, setFoodSum] = useState("");
+  const [StuffSum, setStuffSum] = useState("");
+  const [MescSum, setMescSum] = useState("");
+  const [TravelSum, setTravelSum] = useState("");
   const IP="13.204.17.177:8080";
+
+  const foodBudget = 2500;
+  const travelBudget = 1500;
+  const stuffBudget = 1500;
+  const mescBudget = 1000;
 
 
 
@@ -147,6 +155,23 @@ const ExpenseExplorer = () => {
     setFoodSum(data);
   };
 
+    const handleStuffSum = async () => {
+    const response = await fetch(`http://${IP}/ItemSum/stuff/${FilterMonth}/${FilterYear}`);
+    const data = await response.json();
+    setStuffSum(data);
+  };
+
+    const handleMescSum = async () => {
+    const response = await fetch(`http://${IP}/ItemSum/mesc/${FilterMonth}/${FilterYear}`);
+    const data = await response.json();
+    setMescSum(data);
+  };
+    const handleTravelSum = async () => {
+    const response = await fetch(`http://${IP}/ItemSum/travel/${FilterMonth}/${FilterYear}`);
+    const data = await response.json();
+    setTravelSum(data);
+  };
+
   const handleDelete = async (item, id) => {
     const response = await fetch(`http://${IP}/deleteItem/${item}/${id}`, {
     // const response = await fetch(`http://localhost:8080/deleteItem/${item}/${id}`, {
@@ -182,6 +207,9 @@ const ExpenseExplorer = () => {
       handleFetchMesc();
       handleFetchTravel();
       handleFoodSum();
+      handleStuffSum();
+      handleMescSum();
+      handleTravelSum();
     }
   }, [FilterMonth, FilterYear]);
 
@@ -347,6 +375,7 @@ const ExpenseExplorer = () => {
               ))
             }
             <div className='flex items-center justify-center'>Sum: ₹{FoodSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{foodBudget-FoodSum}</div>
 
 
           </div>
@@ -378,6 +407,8 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
+                <div className='flex items-center justify-center'>Sum: ₹{StuffSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{stuffBudget-StuffSum}</div>
 
 
           </div>
@@ -409,7 +440,8 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
-
+    <div className='flex items-center justify-center'>Sum: ₹{MescSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{mescBudget-MescSum}</div>
 
           </div>
           {/* Travel */}
@@ -440,6 +472,8 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
+                <div className='flex items-center justify-center'>Sum: ₹{TravelSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{travelBudget-TravelSum}</div>
 
 
           </div>
