@@ -26,7 +26,7 @@ const ExpenseExplorer = () => {
   const foodBudget = 2500;
   const travelBudget = 1500;
   const stuffBudget = 1500;
-  const mescBudget = 1000;
+  const mescBudget = 28600;
 
 
 
@@ -211,7 +211,7 @@ const ExpenseExplorer = () => {
       handleMescSum();
       handleTravelSum();
     }
-  }, [FilterMonth, FilterYear]);
+  }, [FilterMonth, FilterYear, ]);
 
 
 
