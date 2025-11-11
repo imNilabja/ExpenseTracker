@@ -17,10 +17,10 @@ const ExpenseExplorer = () => {
   const [Travel, setTravel] = useState([]);
   const [FilterMonth, setFilterMonth] = useState("");
   const [FilterYear, setFilterYear] = useState("");
-  const [FoodSum, setFoodSum] = useState("");
-  const [StuffSum, setStuffSum] = useState("");
-  const [MescSum, setMescSum] = useState("");
-  const [TravelSum, setTravelSum] = useState("");
+  const [FoodSum, setFoodSum] = useState(0);
+  const [StuffSum, setStuffSum] = useState(0);
+  const [MescSum, setMescSum] = useState(0);
+  const [TravelSum, setTravelSum] = useState(0);
   const IP="13.204.17.177:8080";
 
   const foodBudget = 2500;
