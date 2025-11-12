@@ -2,7 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Heading from './Heading';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ExpenseExplorer = () => {
@@ -21,7 +22,7 @@ const ExpenseExplorer = () => {
   const [StuffSum, setStuffSum] = useState(0);
   const [MescSum, setMescSum] = useState(0);
   const [TravelSum, setTravelSum] = useState(0);
-  const IP="13.204.17.177:8080";
+  const IP = "13.204.17.177:8080";
 
   const foodBudget = 2500;
   const travelBudget = 1500;
@@ -112,7 +113,7 @@ const ExpenseExplorer = () => {
         console.error("❌ Failed to add item.");
       }
     }
-
+    toast.success("Item added successfully!");
     setItemCategory("");
     setItemCost("");
     setItemMonth("");
@@ -126,6 +127,7 @@ const ExpenseExplorer = () => {
     const data = await response.json();
     console.log(data)
     setExpense(data);
+    toast.success("Food data fetched successfully!");
   };
 
   const handleFetchStuff = async () => {
@@ -133,6 +135,7 @@ const ExpenseExplorer = () => {
     // const response = await fetch(`http://localhost:8080/getStuffByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setStuff(data);
+    toast.success("Stuff data fetched successfully!");
   };
 
   const handleFetchMesc = async () => {
@@ -140,6 +143,7 @@ const ExpenseExplorer = () => {
     // const response = await fetch(`http://localhost:8080/getMescByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setMesc(data);
+    toast.success("Mesc data fetched successfully!");
   };
 
   const handleFetchTravel = async () => {
@@ -147,6 +151,7 @@ const ExpenseExplorer = () => {
     // const response = await fetch(`http://localhost:8080/getTravelByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setTravel(data);
+    toast.success("Travel data fetched successfully!");
   };
 
   const handleFoodSum = async () => {
@@ -155,18 +160,18 @@ const ExpenseExplorer = () => {
     setFoodSum(data);
   };
 
-    const handleStuffSum = async () => {
+  const handleStuffSum = async () => {
     const response = await fetch(`http://${IP}/ItemSum/stuff/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setStuffSum(data);
   };
 
-    const handleMescSum = async () => {
+  const handleMescSum = async () => {
     const response = await fetch(`http://${IP}/ItemSum/mesc/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setMescSum(data);
   };
-    const handleTravelSum = async () => {
+  const handleTravelSum = async () => {
     const response = await fetch(`http://${IP}/ItemSum/travel/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setTravelSum(data);
@@ -174,9 +179,11 @@ const ExpenseExplorer = () => {
 
   const handleDelete = async (item, id) => {
     const response = await fetch(`http://${IP}/deleteItem/${item}/${id}`, {
-    // const response = await fetch(`http://localhost:8080/deleteItem/${item}/${id}`, {
+      // const response = await fetch(`http://localhost:8080/deleteItem/${item}/${id}`, {
       method: 'DELETE',
     });
+
+    toast.error("Item deleted!!!");
 
   }
 
@@ -188,6 +195,7 @@ const ExpenseExplorer = () => {
     setItemCost(itemCost);
 
     handleDelete(category, id);
+      toast.info("Item updated!!!");
   }
 
 
@@ -211,7 +219,7 @@ const ExpenseExplorer = () => {
       handleMescSum();
       handleTravelSum();
     }
-  }, [FilterMonth, FilterYear, ]);
+  }, [FilterMonth, FilterYear,]);
 
 
 
@@ -298,7 +306,7 @@ const ExpenseExplorer = () => {
             <option value="2029">2029</option>
             <option value="2030">2030</option>
           </select>
-          
+
 
 
           <button onClick={handleSubmit} className='border-1 border-[#A72703] px-4 rounded-xl text-red-700 font-bold cursor-pointer'>Add</button>
@@ -306,7 +314,7 @@ const ExpenseExplorer = () => {
 
         </div>
 
-        
+
         {/* Display Data */}
         <div className='DataDisplayContainer flex flex-col rounded-2xl border-2 border-[#A72703] p-3 h-[400px] overflow-y-scroll mb-4 mx-4 overflow-x-auto scrollbar-[1px] scrollbar-thumb-[#A72703] scrollbar-track-[#A72703]'>
           <div className='filter flex gap-6 flex-wrap'>
@@ -375,7 +383,7 @@ const ExpenseExplorer = () => {
               ))
             }
             <div className='flex items-center justify-center'>Sum: ₹{FoodSum}</div>
-            <div className='flex items-center justify-center'>Remaining: ₹{foodBudget-FoodSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{foodBudget - FoodSum}</div>
 
 
           </div>
@@ -407,8 +415,8 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
-                <div className='flex items-center justify-center'>Sum: ₹{StuffSum}</div>
-            <div className='flex items-center justify-center'>Remaining: ₹{stuffBudget-StuffSum}</div>
+            <div className='flex items-center justify-center'>Sum: ₹{StuffSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{stuffBudget - StuffSum}</div>
 
 
           </div>
@@ -440,8 +448,8 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
-    <div className='flex items-center justify-center'>Sum: ₹{MescSum}</div>
-            <div className='flex items-center justify-center'>Remaining: ₹{mescBudget-MescSum}</div>
+            <div className='flex items-center justify-center'>Sum: ₹{MescSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{mescBudget - MescSum}</div>
 
           </div>
           {/* Travel */}
@@ -472,8 +480,8 @@ const ExpenseExplorer = () => {
                 //  <div>item.food_id</div>
               ))
             }
-                <div className='flex items-center justify-center'>Sum: ₹{TravelSum}</div>
-            <div className='flex items-center justify-center'>Remaining: ₹{travelBudget-TravelSum}</div>
+            <div className='flex items-center justify-center'>Sum: ₹{TravelSum}</div>
+            <div className='flex items-center justify-center'>Remaining: ₹{travelBudget - TravelSum}</div>
 
 
           </div>
