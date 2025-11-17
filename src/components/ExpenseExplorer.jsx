@@ -22,7 +22,8 @@ const ExpenseExplorer = () => {
   const [StuffSum, setStuffSum] = useState(0);
   const [MescSum, setMescSum] = useState(0);
   const [TravelSum, setTravelSum] = useState(0);
-  const IP = "13.204.17.177:8080";
+  const IP = "localhost:8080";
+  // const IP = "13.204.17.177:8080";
 
   const foodBudget = 2500;
   const travelBudget = 1500;
