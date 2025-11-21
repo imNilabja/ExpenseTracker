@@ -41,13 +41,15 @@ const Login = () => {
 
         if (response.ok) {
             console.log("✅ User Logged-in successfully!");
+            localStorage.setItem("loggedInUser", true);
         } else {
             console.error("❌ Failed to log in user.");
         }
 
         const isLogin=await response.json();
-
+        
         if(isLogin){
+
             navigate('/explore');
         }
     }

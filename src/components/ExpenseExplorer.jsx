@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import Heading from './Heading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ExpenseExplorer = () => {
   const [ItemName, setItemName] = useState("");
@@ -29,6 +30,8 @@ const ExpenseExplorer = () => {
   const travelBudget = 1500;
   const stuffBudget = 1500;
   const mescBudget = 28600;
+
+  const navigate= useNavigate();
 
 
 
@@ -246,6 +249,7 @@ const ExpenseExplorer = () => {
   const handleCategory = (e) => {
     setItemCategory(e.target.value);
   }
+
 
 
 
@@ -489,6 +493,8 @@ const ExpenseExplorer = () => {
 
 
         </div>
+
+
       </div>
     </div>
   )

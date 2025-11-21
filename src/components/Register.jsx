@@ -1,10 +1,18 @@
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
+
 const Register = () => {
     const [ItemUserName, setItemUserName] = useState("");
     const [Password, setPassword] = useState("");
     const [Email, setEmail] = useState("");
+
+    const navigate = useNavigate();
 
 
     function handleUserName(e) {
@@ -22,6 +30,34 @@ const Register = () => {
 
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!ItemUserName || !Password || !Email) {
+            toast.error("Please fill all fields.");
+            return;
+        }
+        const existingUser = await fetch(
+            `http://${IP}/existingUser/${ItemUserName}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userName: ItemUserName,
+
+                }),
+            }
+        );
+
+
+        if ((await existingUser.json()) === true) {
+            console.error("❌ User already exists.");
+            toast.info("User already exists.");
+            return;
+        }
+
+
+
         const response = await fetch(
             `http://${IP}/addUser`,
             {
@@ -39,8 +75,12 @@ const Register = () => {
 
         if (response.ok) {
             console.log("✅ User added successfully!");
+            navigate('/login');
+            toast.success("Registered successfully! Please login.");
+
         } else {
             console.error("❌ Failed to add user.");
+            toast.error("Registration failed. Please try again.");
         }
     }
     return (
