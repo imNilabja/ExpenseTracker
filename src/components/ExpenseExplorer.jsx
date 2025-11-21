@@ -31,8 +31,8 @@ const ExpenseExplorer = () => {
   const stuffBudget = 1500;
   const mescBudget = 28600;
 
-  const navigate= useNavigate();
-
+  const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
 
 
   const handleSubmit = async () => {
@@ -47,6 +47,7 @@ const ExpenseExplorer = () => {
           body: JSON.stringify({
             itemName: ItemName,
             itemCost: ItemCost,
+            user: userName,
           }),
         }
       );
@@ -67,6 +68,8 @@ const ExpenseExplorer = () => {
           body: JSON.stringify({
             itemName: ItemName,
             itemCost: ItemCost,
+            user: userName,
+
           }),
         }
       );
@@ -87,6 +90,7 @@ const ExpenseExplorer = () => {
           body: JSON.stringify({
             itemName: ItemName,
             itemCost: ItemCost,
+            user: userName,
           }),
         }
       );
@@ -107,6 +111,7 @@ const ExpenseExplorer = () => {
           body: JSON.stringify({
             itemName: ItemName,
             itemCost: ItemCost,
+            user: userName,
           }),
         }
       );
@@ -126,36 +131,32 @@ const ExpenseExplorer = () => {
   };
 
   const handleFetchFood = async () => {
-    const response = await fetch(`http://${IP}/getFoodByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getFoodByYear/${FilterMonth}/${FilterYear}/${userName}`);
     // const response = await fetch(`http://localhost:8080/getFoodByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     console.log(data)
     setExpense(data);
-    toast.success("Food data fetched successfully!");
   };
 
   const handleFetchStuff = async () => {
-    const response = await fetch(`http://${IP}/getStuffByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getStuffByYear/${FilterMonth}/${FilterYear}/${userName}`);
     // const response = await fetch(`http://localhost:8080/getStuffByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setStuff(data);
-    toast.success("Stuff data fetched successfully!");
   };
 
   const handleFetchMesc = async () => {
-    const response = await fetch(`http://${IP}/getMescByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getMescByYear/${FilterMonth}/${FilterYear}/${userName}`);
     // const response = await fetch(`http://localhost:8080/getMescByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setMesc(data);
-    toast.success("Mesc data fetched successfully!");
   };
 
   const handleFetchTravel = async () => {
-    const response = await fetch(`http://${IP}/getTravelByYear/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/getTravelByYear/${FilterMonth}/${FilterYear}/${userName}`);
     // const response = await fetch(`http://localhost:8080/getTravelByYear/${FilterMonth}/${FilterYear}`);
     const data = await response.json();
     setTravel(data);
-    toast.success("Travel data fetched successfully!");
   };
 
   const handleFoodSum = async () => {
@@ -199,7 +200,7 @@ const ExpenseExplorer = () => {
     setItemCost(itemCost);
 
     handleDelete(category, id);
-      toast.info("Item updated!!!");
+    toast.info("Item updated!!!");
   }
 
 

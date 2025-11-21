@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Heading from './Heading';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -40,8 +41,8 @@ const Login = () => {
         console.log(response);
 
         if (response.ok) {
-            console.log("✅ User Logged-in successfully!");
             localStorage.setItem("loggedInUser", true);
+            localStorage.setItem("userName", ItemUserName);
         } else {
             console.error("❌ Failed to log in user.");
         }
@@ -49,8 +50,11 @@ const Login = () => {
         const isLogin=await response.json();
         
         if(isLogin){
+            toast.success("Login successful!");
 
             navigate('/explore');
+        }else{
+            toast.error("Invalid username or password.");
         }
     }
 
