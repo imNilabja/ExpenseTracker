@@ -228,7 +228,7 @@ const ExpenseExplorer = () => {
       handleMescSum();
       handleTravelSum();
     }
-  }, [FilterMonth, FilterYear,ItemName, ItemCost, ItemMonth, ItemYear, ItemCategory,handleDelete]);
+  }, [FilterMonth, FilterYear]);
 
 
   console.log(Travel);
