@@ -8,17 +8,21 @@ import { Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const ExpenseExplorer = () => {
+    const now = new Date();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const currentMonth = months[now.getMonth()];
+    const currentYear = now.getFullYear().toString();
   const [ItemName, setItemName] = useState("");
   const [ItemCost, setItemCost] = useState("");
-  const [ItemMonth, setItemMonth] = useState("");
-  const [ItemYear, setItemYear] = useState("");
+  const [ItemMonth, setItemMonth] = useState(currentMonth);
+  const [ItemYear, setItemYear] = useState(currentYear);
   const [ItemCategory, setItemCategory] = useState("");
   const [Expense, setExpense] = useState([]);
   const [Stuff, setStuff] = useState([]);
   const [Mesc, setMesc] = useState([]);
   const [Travel, setTravel] = useState([]);
-  const [FilterMonth, setFilterMonth] = useState("");
-  const [FilterYear, setFilterYear] = useState("");
+  const [FilterMonth, setFilterMonth] = useState(currentMonth);
+  const [FilterYear, setFilterYear] = useState(currentYear);
   const [FoodSum, setFoodSum] = useState(0);
   const [StuffSum, setStuffSum] = useState(0);
   const [MescSum, setMescSum] = useState(0);
@@ -160,24 +164,24 @@ const ExpenseExplorer = () => {
   };
 
   const handleFoodSum = async () => {
-    const response = await fetch(`http://${IP}/ItemSum/food/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/ItemSum/food/${FilterMonth}/${FilterYear}/${userName}`);
     const data = await response.json();
     setFoodSum(data);
   };
 
   const handleStuffSum = async () => {
-    const response = await fetch(`http://${IP}/ItemSum/stuff/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/ItemSum/stuff/${FilterMonth}/${FilterYear}/${userName}`);
     const data = await response.json();
     setStuffSum(data);
   };
 
   const handleMescSum = async () => {
-    const response = await fetch(`http://${IP}/ItemSum/mesc/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/ItemSum/mesc/${FilterMonth}/${FilterYear}/${userName}`);
     const data = await response.json();
     setMescSum(data);
   };
   const handleTravelSum = async () => {
-    const response = await fetch(`http://${IP}/ItemSum/travel/${FilterMonth}/${FilterYear}`);
+    const response = await fetch(`http://${IP}/ItemSum/travel/${FilterMonth}/${FilterYear}/${userName}`);
     const data = await response.json();
     setTravelSum(data);
   };
@@ -224,8 +228,7 @@ const ExpenseExplorer = () => {
       handleMescSum();
       handleTravelSum();
     }
-  }, [FilterMonth, FilterYear,]);
-
+  }, [FilterMonth, FilterYear,ItemName, ItemCost, ItemMonth, ItemYear, ItemCategory,handleDelete]);
 
 
   console.log(Travel);

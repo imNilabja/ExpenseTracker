@@ -52,7 +52,7 @@ const Register = () => {
 
         if ((await existingUser.json()) === true) {
             console.error("❌ User already exists.");
-            toast.info("User already exists.");
+            toast.info("Username already exists.");
             return;
         }
 
